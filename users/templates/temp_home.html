@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<body>
+  <h1> Welcome to the Event Manage System! </h1>
+  {% if user.is_authenticated %}
+  <div>
+    <p>Hi <a href="#">{{ user.username }}!</a>
+      <button class = "btn btn-default">
+	<a href= "{% url 'logout' %}?next={{request.path}}">Logout</a>
+      </button>
+      <button class="btn btn-default flex-right">
+	<a href="{% url 'password_change' %}?next={{ request.path }}">Change password</a></button></p>
+    <!--Owner_event-->
+    <p class="top-gap flex-center">
+      <button class="btn btn-primary btn-block">owner</button></p>
+    {%if has_event%}
+    <div>
+      <h4>{{user.username}} has event :</h4>
+      <hr>{%for event in owned_event%}
+      <a href="{% url 'overview_event' event.pk ">
+	<label> {{event.event_name}} </label>
+      </a>
+      <hr> {% endfor %}
+    </div>
+    {% else %}
+    <hr>{{user.username}} has no event now. </hr>
+    <a href="{% url 'create_event' %} class="btn btn-default">Create a new event</a>
+    {% endif %}
+    
+    <!--Vendor_event-->
+    <p class="top-gap flex-center">
+      <button class="btn btn-primary btn-block">vendor</button></p>
+    {%if has_vendor_event%}
+    <div>
+      <h4>{{user.username}} has event :</h4>
+      <hr>{%for event in vendor_event%}
+      <a href="{% url 'overview_event' event.pk  ">
+	<label> {{event.event_name}} </label>
+      </a>
+      <hr> {% endfor %}
+    </div>
+    {% else %}
+    <hr>{{user.username}} has no event now. </hr>
+    {% endif %}
+    <!--Guest_event-->
+    <p class="top-gap flex-center">
+      <button class="btn btn-primary btn-block"> guest</button></p>
+    {%if has_guest_event%}
+    <div>
+      <h4>{{user.username}} has event :</h4>
+      <hr>{%for event in guest_event%}
+      <a href="{% url 'overview_event' event.pk  ">
+	<label> {{event.event_name}} </label>
+      </a>
+      <hr> {% endfor %}
+    </div>
+    {% else %}
+    <hr>{{user.username}} has no event now. </hr>
+    {% endif %}
+</dir>
+  {% else %}
+  <p>You are not logged in, please
+    <button class="btn btn-default">
+      <a href="{% url 'login' %}?next={{request.path}}">Login</a></button>
+    <button class="btn btn-default">
+      <a href="{% url 'users:register' %}">Sign up</a></button>
+  </p>
+</body>
+{% endif %}
+{% endblock %}

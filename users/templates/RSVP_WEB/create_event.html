@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Create event{% endblock %}
+
+{% block content %}
+
+<body>
+  <h2>Create a event</h2>
+  <form class="form" action="{% url 'create_event' %}" method="post">
+    {% csrf_token %} 
+    <table>
+      {{form.as_table}}
+    </table>
+    <p class="help text-small text-muted">{{ field.help_text|safe }}</p>    
+    <button type="submit" class="btn btn-primary btn-block">Create</button>
+    <input type="hidden" name="next" value="{{ next }}"/>
+  </form>
+  <div>
+    {% for entry in form.owners %} {{ entry }}<br> {% endfor %}
+  </div>
+</body>
+
+{% endblock %}

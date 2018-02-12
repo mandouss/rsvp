@@ -1,0 +1,36 @@
+b<html>
+  <title>Events Unlimited | Create Event</title>
+
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static  "events/css/jquery-ui.css" %}">
+    {% load static %}
+    <link rel="stylesheet" href="{% static  "events/css/events.css" %}">
+    {% load static %}
+    <link rel="stylesheet" href="{% static  "events/css/accordion.css" %}">
+    {% load static %}
+    <script src="{% static "questions/js/question.js" %}" type="text/javascript" defer></script>
+    <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+      $("#datepicker").datepicker();
+      });
+    </script>
+    </head>
+<body>
+  <div class="scroll_check_box_owners fancy_text_list">
+  {% for entry in form.owners %} {{ entry }}<br> {% endfor %}
+  </div>
+  <div class="input_container">
+    <form action=" {{ username }}">
+      <input type="submit" value="Cancel" class="fancy cancel" />
+    </form>
+  </div>
+</body>
+</html>

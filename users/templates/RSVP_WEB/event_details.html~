@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <h1> Event Name: {{ event_name }}</h1>
+    <h3> Event Date: {{ event_date }}</h3>
+    <p>Event Description: {{event_details}}</p>
+    
+    {% for owner in event_owner%}
+    <div> owner.username </div>
+    {% endfor %}
+    
+    {% if has_vendor%}
+    {% for vendor in event_vendor %}
+    <div> vendor.username </div>
+    {% endfor %}
+    {% else %}
+    <div> No Vendor Now</div>
+    {% endif %}
+
+    {% if has_guest %}
+    {% for guest in event_guest %}
+    <div> guest.username </div>
+    {% endfor %}
+    {% else %}
+    <div> No Guest Now</div>
+    {% endif %}
+
+  </body>
+  </html>

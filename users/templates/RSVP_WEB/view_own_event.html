@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Create event{% endblock %}
+
+{% block content %}
+<html>
+  <head>
+  
+  </head>
+  <body>
+    <h2 class="flex-middle">Owner event manage</h2> 
+    {%if has_event%}
+    <div>
+      <h3>{{user.username}} has event :</h3>
+      <hr>{%for event in owned_event%}
+      <a href="{% url 'overview_event' event.pk %}">
+	<label> {{event.event_name}} </label>
+      </a>
+      <hr> {% endfor %}
+    </div>
+    {% else %}
+    <h3>{{user.username}} has no event now. </h3>
+    {% endif %}
+  </body>
+  </html>
+
+{% endblock %} 

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+ <h2>Sign up</h2>
+  <form class="form" action="{% url 'users:register' %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    {{ field.label_tag }}
+    {{ field }}
+    {{ field.errors }}
+    {% if field.help_text %}
+    <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
+    {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    <input type="hidden" name = "next" value = "{{ next }}"/>
+  </form>
+{% endblock %}

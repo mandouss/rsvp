@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+<form class="form" action="{% url 'login' %}" method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+  {{ field.label_tag }}
+  {{ field }}
+  {{ field.errors }}
+  {% if field.help_text %}
+  <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
+  {% endif %}
+  {% endfor %}
+  <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+  <input type="hidden" name="next" value="{{ next }}"/>
+</form>
+<div class="flex-left top-gap text-small">
+  <div class="unit-2-3"><span>No Account?
+      <a href="{% url 'users:register' %}?next={{ request.path}}"> Sign up</a></span></div>
+  <div class="unit-1-3 flex-right"><span>
+      <a href="reset_password.html">Forget password?</a></span></div>
+</div>
+{% endblock %}
