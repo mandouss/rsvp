@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}View event{% endblock %}
+
+{% block content %}
+<head>
+    <title></title>
+  </head>
+<body>
+  <h1>Owner Manage System</h1>
+    {% if has_questions %}
+    <p>{{event_name}} Questions:</p>
+    <ul>
+      {% for qs, cs in questions %}
+      <li>{{ qs.text }}</li>
+      <ul>
+	{% for choice in cs %}
+	<li>{{ choice }}</li>
+	{% endfor %}
+      </ul>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p> No question Now </p>
+    {% endif %}
+    <p><a class="logo" href="{% url 'add_questions' event.pk %}">Add Questions</a></p>
+    <a class="logo" href = "{% url 'owner' %}" > click me to view your owner page.</a>
+  </body>
+{% endblock%}

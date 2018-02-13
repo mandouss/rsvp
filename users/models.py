@@ -4,7 +4,6 @@ import datetime
 from django.utils import timezone
 from django.forms import ModelForm
 
-
 from django import forms
 
 from django.forms.widgets import CheckboxSelectMultiple, Select
@@ -49,6 +48,7 @@ class Event(models.Model):
     event_detail = models.CharField(max_length = 254)
     date_time = models.DateTimeField(default = timezone.now, blank = False)
     owners = models.ManyToManyField(User, related_name = "owners")
+    #owner_list = models.CharField(max_length = 200, blank = True)
     vendors = models.ManyToManyField(User, related_name="vendors")
     guests = models.ManyToManyField(User, related_name="guests")
     objects = EventManager()
@@ -76,13 +76,28 @@ class Event(models.Model):
     
     def getGuests(self):
         return self.guests.all()
-
+    
     def addUsers(self, newUsers):
-        [self.addOwner(new_owner) for new_owner in new_users['new_owners']]
-        [self.addVendor(new_vendor) for new_vendor in new_users['new_vendors']]
-        [self.addGuest(new_guest) for new_guest in new_users['new_guests']]
-
-
+        [self.addOwner(new_owner) for new_owner in nuewUsers['new_owners']]
+        [self.addVendor(new_vendor) for new_vendor in newUsers['new_vendors']]
+        [self.addGuest(new_guest) for new_guest in newUsers['new_guests']]
+        
+         
+         
+class Question(models.Model):
+    text = models.CharField(max_length = 200)
+    for_event = models.ForeignKey(Event,on_delete = models.CASCADE)
+    
+    def __str__(self):
+        return self.text
+    
+    
+class Choice(models.Model):
+    choice_text = models.CharField(max_length = 255)
+    for_question = models.ForeignKey(Question, on_delete = models.CASCADE,primary_key=False)
+    
+    def __str__(self):
+        return self.choice_text
 
     
 # Create your models here.

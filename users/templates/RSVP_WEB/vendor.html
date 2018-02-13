@@ -6,7 +6,7 @@
 <html>
 <body>
   <h2 class="flex-middle">Vendor event manage</h2>
-  {%if has_vendor_event%}
+  <!--{%if has_vendor_event%}-->
   <div>
     <h4>{{user.username}} has event: </h4>
     <hr>{%for event in vendor_event%}
@@ -18,6 +18,7 @@
   {% else %}
   <p>Sorry, {{user.username}} has no event now. </p>
   {% endif %}
+  <h3 class="logo"><a href="{% url 'home' %}">Back to home page. </h3>
 </body>
 </html>
 

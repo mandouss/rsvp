@@ -1,6 +1,11 @@
-b<html>
-  <title>Events Unlimited | Create Event</title>
+{% extends 'base.html' %}
 
+{% block title %}Create event{% endblock %}
+
+{% block content %}
+
+<html>
+  <title>Events Unlimited | Create Event</title>
   <head>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,7 +28,8 @@ b<html>
       });
     </script>
     </head>
-<body>
+  <body>
+    <h1>Event Manage System</h1>
   <div class="scroll_check_box_owners fancy_text_list">
   {% for entry in form.owners %} {{ entry }}<br> {% endfor %}
   </div>
@@ -34,3 +40,5 @@ b<html>
   </div>
 </body>
 </html>
+
+{% endblock %}

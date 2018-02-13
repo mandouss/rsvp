@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Create event{% endblock %}
+{% block content %}  
+<head>
+  <title></title>
+</head>
+<body>
+  {% if has_question %}
+  <p>Current Questions:</p>
+  <ul>
+    {% for question in questions %}
+    <li>{{ question.text }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p> No Question Now, Please Add a Question </p>
+  {% endif %}
+  <form method="post" action=>
+    {% csrf_token %}>
+    <table>
+      {{ questionform.as_table }}
+    </table>
+    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+  </form>
+</body>
+{% endblock %} 

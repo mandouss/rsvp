@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+
 from users import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,10 +26,11 @@ urlpatterns = [
     path('owner_page/',views.owner, name = 'owner'),
     path('vendor_page/',views.vendor, name = 'vendor'),
     path('guest_page/',views.guest, name = 'guest'),
-    path('owner_page/create_event',views.create_event, name = 'create_event'),
-    path('owner_page/manage_event',views.manage_event, name = 'manage_event'),
-    path('owner_page/manage_event/<int:eventname>',views.overview_event, name = 'overview_event'),
-    path('owner_page/create_event/create_success',views.create_success, name = 'create_success'),
-    path('<int:username>/add_guest/', views.add_guest, name='add_guest_list'),
+    path('owner_page/create_event/',views.create_event, name = 'create_event'),
+    path('owner_page/manage_event/',views.manage_event, name = 'manage_event'),
+    path('owner_page/manage_event/<int:eventname>/',views.overview_event, name = 'overview_event'),
+    path('owner_page/manage_event/<int:eventname>/view_questions/',views.view_questions, name = 'view_questions'),
+    path('owner_page/manage_event/<int:eventname>/view_questions/add_questions/',views.add_questions, name = 'add_questions'),
+    path('owner_page/create_event/create_success/',views.create_success, name = 'create_success'),
 ]
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    {% if has_questions %}
+    <p>{{event_name}} Questions:</p>
+    <ul>
+      {% for qs, cs in questions %}
+      <li>{{ qs.text }}</li>
+      <ul>
+	{% for choice in cs %}
+	<li>{{ choice }}</li>
+	{% endfor %}
+      </ul>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p> No question Now </p>
+    {% endif %}
+
+    <p><a href="{% url 'add_questions' event.pk %}">Add Questions</a></p>
+
+  </body>
+</html>

@@ -1,32 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-  </head>
-  <body>
-    <h1> Event Name: {{ event_name }}</h1>
-    <h3> Event Date: {{ event_date }}</h3>
-    <p>Event Description: {{event_details}}</p>
-    
-    {% for owner in event_owner%}
-    <div> owner.nickname </div>
-    {% endfor %}
-    
-    {% if has_vendor%}
-    {% for vendor in event_vendor %}
-    <div> vendor.nickname </div>
-    {% endfor %}
-    {% else %}
-    <div> No Vendor Now</div>
-    {% endif %}
+{% extends 'base.html' %}
 
-    {% if has_guest %}
-    {% for guest in event_guest %}
-    <div> guest.nickname </div>
-    {% endfor %}
-    {% else %}
-    <div> No Guest Now</div>
-    {% endif %}
+{% block title %}Event detail{% endblock %}
 
-  </body>
-  </html>
+{% block content %}
+
+<head>
+  <title></title>
+</head>
+<body>
+  <h1>Event Manage System</h1>
+  <h3> Event Name: {{ event_name }}</h3>
+  <h3> Event Date: {{ event_date }}</h3>
+  <p>Event Description: {{event_details}}</p>
+  
+  <h3>Event Owner:</h3>
+  {% for owner in event_owner%}
+  
+  <div> {{owner.username}} </div>
+  {% endfor %}
+  
+  <h3>Event Vendor:</h3>
+  {% if has_vendor%}
+  {% for vendor in event_vendor %}
+  
+  <div> {{vendor.username}} </div>
+  {% endfor %}
+  {% else %}
+  <div> No Vendor Now</div>
+  {% endif %}
+  
+  <h3>Event Guest:</h3>
+  {% if has_guest %}
+  {% for guest in event_guest %}
+  
+  <div> {{guest.username}} </div>
+  {% endfor %}
+  {% else %}
+  <div> No Guest Now</div>
+  {% endif %}
+  
+  <form action="{% url 'view_questions' event.pk %}">
+    <input type="submit" value="View Questions"/>
+  </form>
+  <h3 class="logo"><a href="{% url 'home' %}">Back to home page. </h3>
+</body>
+
+{% endblock %}

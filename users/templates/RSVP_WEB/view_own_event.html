@@ -9,10 +9,10 @@
   </head>
   <body>
     <h2 class="flex-middle">Owner event manage</h2> 
-    {%if has_event%}
+    {% if has_event%}
     <div>
       <h3>{{user.username}} has event :</h3>
-      <hr>{%for event in owned_event%}
+      <hr>{% for event in owned_event%}
       <a href="{% url 'overview_event' event.pk %}">
 	<label> {{event.event_name}} </label>
       </a>
@@ -21,6 +21,7 @@
     {% else %}
     <h3>{{user.username}} has no event now. </h3>
     {% endif %}
+    <a class="logo" href = "{% url 'owner' %}" > click me to view your owner page!
   </body>
   </html>
 

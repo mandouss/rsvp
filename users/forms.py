@@ -3,7 +3,7 @@
 from django.db import models
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Event
+from .models import User, Event, Question, Choice
 from django.forms import ModelForm
 from django.forms.widgets import CheckboxSelectMultiple, Select
 
@@ -27,10 +27,28 @@ class Eventform(ModelForm):
     #start_time = models.TimeField(help_text = "Start Time", input_formats = ['%I:%M %p'])
     event_date = forms.fields.DateTimeField()
     #end_time = models.TimeField(help_text = "End Time", input_formats = ['%I:%M %p'])
+    #owner_list = forms.fields.CharField(max_length = 200)
     owners = MyModelMultipleChoiceField(queryset = User.objects.all(), widget = CheckboxSelectMultiple(), required = False)
     vendors = MyModelMultipleChoiceField(queryset = User.objects.all(), widget = CheckboxSelectMultiple(), required = False)
     guests = MyModelMultipleChoiceField(queryset = User.objects.all(), widget = CheckboxSelectMultiple(), required = False)
     class Meta:
         model = Event
-        fields = ('event_name','event_detail','event_date')
+        fields = ['event_name','event_detail','event_date', 'owners', 'vendors', 'guests']
 
+        
+class MyModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return obj.username
+                
+class QuestionForm(ModelForm):
+    text = models.CharField(max_length = 200)
+    class Meta:
+        model = Question
+        fields = ['text']
+        
+
+class ChoiceForm(ModelForm):
+    choice_text = models.CharField(max_length = 100)
+    class Meta:
+        model = Choice
+        fields = ['choice_text']

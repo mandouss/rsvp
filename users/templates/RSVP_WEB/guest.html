@@ -5,7 +5,7 @@
 {% block content %}
 
 <html>
-<body>
+  <body>
   <h2 class="flex-middle">Guest event manage</h2>
     {%if has_guest_event %} 
     <div>
@@ -19,6 +19,7 @@
     {% else %}
     <p>Sorry, {{user.username}} has no event now. </p>
     {% endif %}
+    <h3 class="logo"><a href="{% url 'home' %}">Back to home page. </h3>
 </body>
 </html>
 
